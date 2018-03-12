@@ -1,3 +1,67 @@
-<resources>
-    <string name="app_name">PopularMovies</string>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">Popular Movies</string>
+    
+    
+    <!--SUBHEADER STRING-->
+    <string name="overview_sub">Plot/Synopsis:</string>
+    <string name="runtime_sub">Running Time</string>
+    <string name="languages_sub">Languages</string>
+    <string name="genres_sub">Genres</string>
+    <string name="budget_sub">Budget</string>
+    <string name="revenue_sub">Worldwide Revenue</string>
+    <string name="user_rating_sub">User Rating</string>
+    <string name="release_date_sub">Release Date</string>
+
+    <!--DETAIL ACTIVITY STRINGS-->
+    <string name="rating_max">/10</string>
+
+    <!--PLACEHOLDER STRINGS-->
+    <string name="title_placeholder">Fight Club (1999)</string>
+    <string name="overview_placeholder">A ticking-time-bomb insomniac and a slippery soap salesman
+        channel primal male aggression into a shocking new form of therapy. Their concept catches
+        on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the
+        way and ignites an out-of-control spiral toward oblivion.</string>
+    <string name="runtime_placeholder">2h 19m</string>
+    <string name="languages_placeholder">English</string>
+    <string name="genres_placeholder">Drama | Thriller | Comedy</string>
+    <string name="budget_placeholder">$1.5m</string>
+    <string name="revenue_placeholder">$10.1m</string>
+    <string name="user_rating_placeholder">8.3</string>
+    <string name="vote_count_placeholder">1,555 votes</string>
+    <string name="release_date_placeholder">1999&#8211;10&#8211;15</string>
+    <string name="movie_year_placeholder">(1999)</string>
+    
+    
+    <!--CONTENT DESCRIPTION STRING-->
+    <string name="poster_description">Movie poster</string>
+    <string name="backdrop_description">Backdrop image from movie</string>
+    <string name="tmdb_logo_description">TMDB Logo - App Powered by The Movie Database</string>
+
+
+    <!--STRINGS FOR DEALING WITH EXCEPTIONS -->
+    <string name="url_exception">Problem with the request URL</string>
+    <string name="response_code_exception" tools:ignore="PluralsCandidate">
+        Error: <xliff:g name="response_code">%d</xliff:g> response code received
+    </string>
+    <string name="json_exception">Problem retrieving JSON correctly</string>
+    <string name="parse_exception">Invalid date or problem with date formatting</string>
+    <string name="http_request_exception">HTTP request error</string>
+    <string name="no_network_connection">
+        Error. No network connection or unable to connect to network.
+    </string>
+    <string name="null_pointer_exception">Error. No response code found.</string>
+    <string name="keyboard_hide_exception">Error hiding keyboard</string>
+    <string name="malformed_url_exception">Problem with the thumbnail URL</string>
+    <string name="io_exception">Unknown IO exception</string>
+    
+    
+    
+    
+    
+    
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="action_settings">Settings</string>
 </resources>

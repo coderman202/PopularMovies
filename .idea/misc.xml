@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="CopyrightManager">
-    <LanguageOptions name="__TEMPLATE__">
-      <option name="block" value="false" />
-      <option name="separateBefore" value="true" />
-      <option name="separateAfter" value="true" />
-      <option name="filler" value="-" />
-    </LanguageOptions>
-  </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
     <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />

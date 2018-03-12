@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_margin">16dp</dimen>
+
+    <dimen name="list_item_padding">1dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="tmdb_logo_height">45dp</dimen>
+    
+    <dimen name="details_screen_item_padding">4dp</dimen>
+    <dimen name="details_screen_small_text_size">12sp</dimen>
+    <dimen name="details_screen_title_text_size">20sp</dimen>
+    <dimen name="details_screen_smaller_text_size">10sp</dimen>
+
+</resources>

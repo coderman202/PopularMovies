@@ -6,6 +6,57 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorBackground</item>
+        <item name="android:navigationBarColor">@color/colorBackground</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <!--DETAILS ACTIVITY STYLES-->
+    <style name="SubHeadersStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/TextSubTitleStyle</item>
+        <item name="android:paddingTop">@dimen/details_screen_item_padding</item>
+        <item name="android:paddingBottom">@dimen/details_screen_item_padding</item>
+    </style>
+
+    <style name="MovieDetailsStyle" parent="SubHeadersStyle">
+        <item name="android:textAppearance">@style/TextBodyStyle</item>
+        <item name="android:paddingStart">@dimen/details_screen_item_padding</item>
+        <item name="android:paddingEnd">@dimen/details_screen_item_padding</item>
+    </style>
+
+
+    <!--TEXT STYLES-->
+    <style name="TextTitleStyle" parent="@android:style/TextAppearance.Material.Title">
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:textSize">@dimen/details_screen_title_text_size</item>
+    </style>
+
+    <style name="TextRatingStyle" parent="@android:style/TextAppearance.Material.Title">
+        <item name="android:textColor">@color/colorPrimaryText</item>
+    </style>
+
+    <style name="TextSubTextStyle" parent="@android:style/TextAppearance.Material.Small">
+        <item name="android:textColor">@color/greyed_text_color</item>
+        <item name="android:textSize">@dimen/details_screen_small_text_size</item>
+    </style>
+
+    <style name="TextBodyStyle" parent="@android:style/TextAppearance.Material.Small">
+        <item name="android:textColor">@color/colorPrimaryText</item>
+    </style>
+
+    <style name="TextSubTitleStyle" parent="@android:style/TextAppearance.Material.Small">
+        <item name="android:textColor">@color/colorSecondaryText</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

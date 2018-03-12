@@ -1,6 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!--?xml version="1.0" encoding="UTF-8"?-->
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#263238</color>
+    <color name="colorPrimaryLight">#7c43bd</color>
+    <color name="colorPrimaryDark">#081c24</color>
+    <color name="colorSecondary">#d50000</color>
+    <color name="colorSecondaryLight">#ff5131</color>
+    <color name="colorSecondaryDark">#9b0000</color>
+    <color name="colorPrimaryText">#ffffff</color>
+    <color name="colorSecondaryText">#01D277</color>
+    <color name="colorAccent">#01D277</color>
+    <color name="colorBackground">#081c24</color>
+
+
+    <color name="star_color">#FDD835</color>
+    <color name="greyed_text_color">#E0E0E0</color>
+    <color name="tmdb_logo_color">#01D277</color>
+
 </resources>
