@@ -23,6 +23,10 @@ import java.util.List;
  */
 public class Movie implements Parcelable {
 
+    @SerializedName("original_title")
+    @Expose
+    private String originalTitle;
+
     @SerializedName("title")
     @Expose
     private String title;
@@ -69,7 +73,7 @@ public class Movie implements Parcelable {
 
     @SerializedName("imdb_id")
     @Expose
-    private int imdbID;
+    private String imdbID;
 
     @SerializedName("budget")
     @Expose
@@ -91,53 +95,184 @@ public class Movie implements Parcelable {
     @Expose
     private String status;
 
-    /**
-     * Instantiates a new Movie.
-     *
-     * @param title             the title
-     * @param posterImageLink   the poster image link
-     * @param backdropImageLink the backdrop image link
-     * @param overview          the overview
-     * @param userRating        the user rating
-     * @param voteCount         the vote count
-     * @param releaseDate       the release date
-     * @param genres            the genres
-     * @param runtime           the runtime
-     * @param tagline           the tagline
-     * @param tmdbID            the tmdb id
-     * @param imdbID            the imdb id
-     * @param budget            the budget
-     * @param revenue           the revenue
-     * @param mainLanguage      the main language
-     * @param homepageLink      the homepage link
+    @SerializedName("adult")
+    @Expose
+    private boolean adult;
 
-     * @param status            the status - is the film released or is it in production or what?
-     */
-    public Movie(String title, String posterImageLink, String backdropImageLink, String overview,
-                 double userRating, int voteCount, String releaseDate, List<Genre> genres,
-                 int runtime, String tagline, int tmdbID, int imdbID, int budget, int revenue,
-                 String mainLanguage, String homepageLink, String status) {
-        this.title = title;
-        this.posterImageLink = posterImageLink;
-        this.backdropImageLink = backdropImageLink;
-        this.overview = overview;
-        this.userRating = userRating;
-        this.voteCount = voteCount;
-        this.releaseDate = releaseDate;
-        this.genres = genres;
-        this.runtime = runtime;
-        this.tagline = tagline;
-        this.tmdbID = tmdbID;
-        this.imdbID = imdbID;
-        this.budget = budget;
-        this.revenue = revenue;
-        this.mainLanguage = mainLanguage;
-        this.homepageLink = homepageLink;
-        this.status = status;
+    @SerializedName("popularity")
+    @Expose
+    private double popularity;
+
+    @SerializedName("production_companies")
+    @Expose
+    private List<ProductionCompany> productionCompanies = null;
+
+    @SerializedName("production_countries")
+    @Expose
+    private List<ProductionCountry> productionCountries = null;
+
+    @SerializedName("spoken_languages")
+    @Expose
+    private List<SpokenLanguage> spokenLanguages = null;
+
+    @SerializedName("video")
+    @Expose
+    private boolean video;
+
+    @SerializedName("belongs_to_collection")
+    @Expose
+    private BelongsToCollection belongsToCollection;
+
+
+    public Movie(){
+        this.genres = new ArrayList<>();
+        this.productionCompanies = new ArrayList<>();
+        this.productionCountries = new ArrayList<>();
+        this.spokenLanguages = new ArrayList<>();
     }
 
-    private Movie(){
-        this.genres = new ArrayList<>();
+    /**
+     * Gets original title.
+     *
+     * @return the original title
+     */
+    public String getOriginalTitle() {
+        return originalTitle;
+    }
+
+    /**
+     * Sets original title.
+     *
+     * @param originalTitle the original title
+     */
+    public void setOriginalTitle(String originalTitle) {
+        this.originalTitle = originalTitle;
+    }
+
+    /**
+     * Is adult boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isAdult() {
+        return adult;
+    }
+
+    /**
+     * Sets adult.
+     *
+     * @param adult the adult
+     */
+    public void setAdult(boolean adult) {
+        this.adult = adult;
+    }
+
+    /**
+     * Gets popularity.
+     *
+     * @return the popularity
+     */
+    public double getPopularity() {
+        return popularity;
+    }
+
+    /**
+     * Sets popularity.
+     *
+     * @param popularity the popularity
+     */
+    public void setPopularity(double popularity) {
+        this.popularity = popularity;
+    }
+
+    /**
+     * Gets production companies.
+     *
+     * @return the production companies
+     */
+    public List<ProductionCompany> getProductionCompanies() {
+        return productionCompanies;
+    }
+
+    /**
+     * Sets production companies.
+     *
+     * @param productionCompanies the production companies
+     */
+    public void setProductionCompanies(List<ProductionCompany> productionCompanies) {
+        this.productionCompanies = productionCompanies;
+    }
+
+    /**
+     * Gets production countries.
+     *
+     * @return the production countries
+     */
+    public List<ProductionCountry> getProductionCountries() {
+        return productionCountries;
+    }
+
+    /**
+     * Sets production countries.
+     *
+     * @param productionCountries the production countries
+     */
+    public void setProductionCountries(List<ProductionCountry> productionCountries) {
+        this.productionCountries = productionCountries;
+    }
+
+    /**
+     * Gets spoken languages.
+     *
+     * @return the spoken languages
+     */
+    public List<SpokenLanguage> getSpokenLanguages() {
+        return spokenLanguages;
+    }
+
+    /**
+     * Sets spoken languages.
+     *
+     * @param spokenLanguages the spoken languages
+     */
+    public void setSpokenLanguages(List<SpokenLanguage> spokenLanguages) {
+        this.spokenLanguages = spokenLanguages;
+    }
+
+    /**
+     * Is video boolean.
+     *
+     * @return the boolean
+     */
+    public boolean isVideo() {
+        return video;
+    }
+
+    /**
+     * Sets video.
+     *
+     * @param video the video
+     */
+    public void setVideo(boolean video) {
+        this.video = video;
+    }
+
+    /**
+     * Gets belongs to collection.
+     *
+     * @return the belongs to collection
+     */
+    public BelongsToCollection getBelongsToCollection() {
+        return belongsToCollection;
+    }
+
+    /**
+     * Sets belongs to collection.
+     *
+     * @param belongsToCollection the belongs to collection
+     */
+    public void setBelongsToCollection(BelongsToCollection belongsToCollection) {
+        this.belongsToCollection = belongsToCollection;
     }
 
     /**
@@ -149,6 +284,11 @@ public class Movie implements Parcelable {
         return title;
     }
 
+    /**
+     * Get title detailed string.
+     *
+     * @return the string
+     */
     public String getTitleDetailed(){
         return title + " (" + this.getYear() + ")";
     }
@@ -180,10 +320,20 @@ public class Movie implements Parcelable {
         this.posterImageLink = posterImageLink;
     }
 
+    /**
+     * Gets backdrop image link.
+     *
+     * @return the backdrop image link
+     */
     public String getBackdropImageLink() {
         return backdropImageLink;
     }
 
+    /**
+     * Sets backdrop image link.
+     *
+     * @param backdropImageLink the backdrop image link
+     */
     public void setBackdropImageLink(String backdropImageLink) {
         this.backdropImageLink = backdropImageLink;
     }
@@ -215,6 +365,11 @@ public class Movie implements Parcelable {
         return userRating;
     }
 
+    /**
+     * Get user rating to string string.
+     *
+     * @return the string
+     */
     public String getUserRatingToString(){
         return DecimalFormat.getInstance().format(this.userRating);
     }
@@ -237,6 +392,11 @@ public class Movie implements Parcelable {
         return this.voteCount;
     }
 
+    /**
+     * Get vote count to string string.
+     *
+     * @return the string
+     */
     public String getVoteCountToString(){
         return NumberFormat.getInstance().format(voteCount);
     }
@@ -265,6 +425,7 @@ public class Movie implements Parcelable {
      * @return the year as an int.
      */
     public int getYear(){
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         Date convertedDate = new Date();
@@ -299,6 +460,7 @@ public class Movie implements Parcelable {
 
     /**
      * A method which loops through the list of Genres to get their names
+     *
      * @return a String of concatenated genre names.
      */
     public String getGenresToString(){
@@ -329,6 +491,11 @@ public class Movie implements Parcelable {
         return runtime;
     }
 
+    /**
+     * Get runtime to string string.
+     *
+     * @return the string
+     */
     public String getRuntimeToString(){
         int hours = this.runtime/60;
         int mins = this.runtime - (hours*60);
@@ -392,7 +559,7 @@ public class Movie implements Parcelable {
      *
      * @return the imdb id
      */
-    public int getImdbID() {
+    public String getImdbID() {
         return imdbID;
     }
 
@@ -401,7 +568,7 @@ public class Movie implements Parcelable {
      *
      * @param imdbID the imdb id
      */
-    public void setImdbID(int imdbID) {
+    public void setImdbID(String imdbID) {
         this.imdbID = imdbID;
     }
 
@@ -545,6 +712,7 @@ public class Movie implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.originalTitle);
         dest.writeString(this.title);
         dest.writeString(this.posterImageLink);
         dest.writeString(this.backdropImageLink);
@@ -556,17 +724,23 @@ public class Movie implements Parcelable {
         dest.writeInt(this.runtime);
         dest.writeString(this.tagline);
         dest.writeInt(this.tmdbID);
-        dest.writeInt(this.imdbID);
+        dest.writeString(this.imdbID);
         dest.writeInt(this.budget);
         dest.writeInt(this.revenue);
         dest.writeString(this.mainLanguage);
         dest.writeString(this.homepageLink);
         dest.writeString(this.status);
+        dest.writeByte(this.adult ? (byte) 1 : (byte) 0);
+        dest.writeDouble(this.popularity);
+        dest.writeTypedList(this.productionCompanies);
+        dest.writeTypedList(this.productionCountries);
+        dest.writeList(this.spokenLanguages);
+        dest.writeByte(this.video ? (byte) 1 : (byte) 0);
+        dest.writeParcelable(this.belongsToCollection, flags);
     }
 
     protected Movie(Parcel in) {
-        this();
-
+        this.originalTitle = in.readString();
         this.title = in.readString();
         this.posterImageLink = in.readString();
         this.backdropImageLink = in.readString();
@@ -574,19 +748,27 @@ public class Movie implements Parcelable {
         this.userRating = in.readDouble();
         this.voteCount = in.readInt();
         this.releaseDate = in.readString();
-        in.readTypedList(genres, Genre.CREATOR);
+        this.genres = in.createTypedArrayList(Genre.CREATOR);
         this.runtime = in.readInt();
         this.tagline = in.readString();
         this.tmdbID = in.readInt();
-        this.imdbID = in.readInt();
+        this.imdbID = in.readString();
         this.budget = in.readInt();
         this.revenue = in.readInt();
         this.mainLanguage = in.readString();
         this.homepageLink = in.readString();
         this.status = in.readString();
+        this.adult = in.readByte() != 0;
+        this.popularity = in.readDouble();
+        this.productionCompanies = in.createTypedArrayList(ProductionCompany.CREATOR);
+        this.productionCountries = in.createTypedArrayList(ProductionCountry.CREATOR);
+        this.spokenLanguages = new ArrayList<SpokenLanguage>();
+        in.readList(this.spokenLanguages, SpokenLanguage.class.getClassLoader());
+        this.video = in.readByte() != 0;
+        this.belongsToCollection = in.readParcelable(BelongsToCollection.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
+    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
         @Override
         public Movie createFromParcel(Parcel source) {
             return new Movie(source);

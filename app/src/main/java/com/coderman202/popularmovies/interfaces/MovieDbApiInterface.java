@@ -14,19 +14,19 @@ import retrofit2.http.Query;
  * Setting up API interface for using retrofit.
  * Followed instructions at the following link:
  *
- * @see <a href = "https://www.youtube.com/watch?v=gGuUBlzmtPQ"</a>
+ * @see <a href = "https://www.youtube.com/watch?v=gGuUBlzmtPQ">here</a>
  */
 public interface MovieDbApiInterface {
 
     /**
      * Gets movie details for the movie relating to the specific ID on The Movie DB.
      *
-     * @param tmdbID the tmdb id
-     * @param apiKey the api key
+     * @param id the tmdb id
+     * @param api_key the api key
      * @return {@link Movie} object
      */
     @GET("movie/{id}")
-    Call<Movie> getMovieDetails(@Path("id") int tmdbID, @Query("api_key") String apiKey);
+    Call<Movie> getMovieDetails(@Path("id") int id, @Query("api_key") String api_key);
 
     /**
      * Gets a list of movies sorted by the user preference.

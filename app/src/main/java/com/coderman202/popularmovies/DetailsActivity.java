@@ -39,7 +39,10 @@ public class DetailsActivity extends AppCompatActivity {
     @BindView(R.id.movie_budget) TextView budgetView;
     @BindView(R.id.movie_revenue) TextView revenueView;
 
-    Movie movie;
+    static Movie movie;
+
+    static int tmdbID;
+
 
 
     @Override
@@ -51,27 +54,28 @@ public class DetailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        movie = intent.getParcelableExtra("Movie");
+        tmdbID = intent.getIntExtra("ID", 0);
 
         getMovieDetails();
 
         populateUI();
-
-
     }
 
     private void getMovieDetails(){
 
         try{
+            Log.e(LOG_TAG, "test2");
             MovieDbApiInterface movieDbApiInterface =
                     ApiUrlBuilder.getRetrofitClient(this).create(MovieDbApiInterface.class);
             final Call<Movie> movieJsonResponseCall =
-                    movieDbApiInterface.getMovieDetails(movie.getTmdbID(), ApiUrlBuilder.API_KEY);
+                    movieDbApiInterface.getMovieDetails(tmdbID, ApiUrlBuilder.API_KEY);
 
+            Log.e(LOG_TAG, "test3");
             movieJsonResponseCall.enqueue(new Callback<Movie>() {
                 @Override
                 public void onResponse(Call<Movie> call, Response<Movie> response) {
                     int responseCode = response.code();
+                    Log.e(LOG_TAG, responseCode + "");
                     if(response.isSuccessful()){
                         movie = response.body();
                         Log.e(LOG_TAG + "1", movie.toString());
@@ -81,11 +85,11 @@ public class DetailsActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<Movie> call, Throwable t) {
                     Log.e(LOG_TAG + "1", "Why? :(");
-
                 }
             });
 
         } catch (IOException e){
+            Log.e(LOG_TAG, e.toString());
             e.printStackTrace();
         }
     }

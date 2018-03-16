@@ -21,6 +21,7 @@ public class ApiUrlBuilder {
 
     public static Retrofit retrofitClient = null;
 
+    // ENTER YOUR OWN API KEY HERE
     public static final String API_KEY = "";
 
     public static final int RESPONSE_CODE = 200;

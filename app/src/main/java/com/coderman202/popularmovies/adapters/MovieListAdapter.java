@@ -83,7 +83,6 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
 
         if(!TextUtils.isEmpty(posterUrlPath)){
             posterUrlPath = ApiUrlBuilder.MOVIE_POSTER_PATH_BASE_URL + posterUrlPath;
-            Log.e("Poster", posterUrlPath);
             Picasso.with(context).load(posterUrlPath).into(holder.moviePosterView);
         }
 
@@ -91,7 +90,8 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailsActivity.class);
-                intent.putExtra("Movie", movie);
+                intent.putExtra("ID", movie.getTmdbID());
+                Log.e(LOG_TAG, ""+movie.getTmdbID());
                 context.startActivity(intent);
             }
         });
