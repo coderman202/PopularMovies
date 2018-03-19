@@ -32,7 +32,7 @@ public class ApiUrlBuilder {
     private static Retrofit retrofitClient = null;
 
     // ENTER YOUR OWN API KEY HERE
-    public static final String API_KEY = "0f5005394d20627b2c8666837015f2ae";
+    public static final String API_KEY = "";
 
     // Constant - how long til connection will timeout - in milliseconds.
     public static final int CONNECT_TIMEOUT = 15000;
