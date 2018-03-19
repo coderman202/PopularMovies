@@ -15,5 +15,6 @@
     <color name="star_color">#FDD835</color>
     <color name="greyed_text_color">#E0E0E0</color>
     <color name="tmdb_logo_color">#01D277</color>
+    <color name="link_text_color">@color/greyed_text_color</color>
 
 </resources>

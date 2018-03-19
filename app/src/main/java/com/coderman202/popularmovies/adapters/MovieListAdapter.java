@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,12 +85,14 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
             Picasso.with(context).load(posterUrlPath).into(holder.moviePosterView);
         }
 
+        // Set content description programmatically
+        holder.moviePosterView.setContentDescription(context.getString(R.string.poster_description, movie.getTitle()));
+
         holder.moviePosterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailsActivity.class);
-                intent.putExtra("ID", movie.getTmdbID());
-                Log.e(LOG_TAG, ""+movie.getTmdbID());
+                intent.putExtra(DetailsActivity.MOVIE_ID_KEY, movie.getTmdbID());
                 context.startActivity(intent);
             }
         });

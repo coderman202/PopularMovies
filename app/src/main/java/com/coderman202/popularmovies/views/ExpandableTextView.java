@@ -60,7 +60,7 @@ public class ExpandableTextView extends android.support.v7.widget.AppCompatTextV
     }
 
     /**
-     * A method which uses the enary operator to get the text that should be displayed.
+     * A method which uses the unary operator to get the text that should be displayed.
      * Be it the original full text or the trimmed version, by checking the boolean variable trim.
      *
      * @return returns a CharSequence, either trimmed or original text
@@ -89,7 +89,7 @@ public class ExpandableTextView extends android.support.v7.widget.AppCompatTextV
      * A method to get the trimmed version of the text, and appending the ELLIPSIS variable to
      * notify the user that they can click to view more and expand the TextView
      *
-     * @return returns a CharSequence of the trimmed textm if the length of the text is long enough
+     * @return returns a CharSequence of the trimmed text if the length of the text is long enough
      * such that it needs to be trimmed.
      */
     private CharSequence getTrimmedText() {

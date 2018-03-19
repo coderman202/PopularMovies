@@ -23,6 +23,7 @@
         android:src="@drawable/tmdb_logo"
         android:layout_height="@dimen/tmdb_logo_height"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:contentDescription="@string/tmdb_logo_description"/>
 
 </android.support.constraint.ConstraintLayout>

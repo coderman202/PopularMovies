@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="com.coderman202.popularmovies.DetailActivity">
+
+    <item
+        android:id="@+id/now_playing_option"
+        android:orderInCategory="100"
+        android:title="@string/now_playing"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/upcoming_option"
+        android:orderInCategory="300"
+        android:title="@string/upcoming"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/pop_option"
+        android:orderInCategory="400"
+        android:title="@string/popular"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/top_rated_option"
+        android:orderInCategory="500"
+        android:title="@string/top_rated"
+        app:showAsAction="never"/>
+</menu>

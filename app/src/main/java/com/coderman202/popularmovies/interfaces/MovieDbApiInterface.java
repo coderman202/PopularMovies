@@ -14,12 +14,16 @@ import retrofit2.http.Query;
  * Setting up API interface for using retrofit.
  * Followed instructions at the following link:
  *
- * @see <a href = "https://www.youtube.com/watch?v=gGuUBlzmtPQ">here</a>
+ * @see <a href="https://www.youtube.com/watch?v=gGuUBlzmtPQ">here</a>
+ *
+ * Also source documentation:
+ * @see <a href="http://square.github.io/retrofit/">Retrofit</a>
+ * @see <a href="http://square.github.io/okhttp/">OkHttp</a>
  */
 public interface MovieDbApiInterface {
 
     /**
-     * Gets movie details for the movie relating to the specific ID on The Movie DB.
+     * Gets movie details for the movie relating to the specific MOVIE_ID_KEY on The Movie DB.
      *
      * @param id the tmdb id
      * @param api_key the api key
@@ -38,5 +42,6 @@ public interface MovieDbApiInterface {
      */
     @GET("movie/{preference}")
     Call<MovieJsonResponse> getMovieList(@Path("preference") String preference,
-                                         @Query("api_key") String api_key);
+                                         @Query("api_key") String api_key,
+                                         @Query("page") int pageNum);
 }

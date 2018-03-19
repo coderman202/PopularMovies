@@ -1,9 +1,11 @@
 package com.coderman202.popularmovies.model;
 
+import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 
+import com.coderman202.popularmovies.builders.ApiUrlBuilder;
 import com.coderman202.popularmovies.utilities.FormatUtils;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Reggie on 25/02/2018.
@@ -415,8 +418,8 @@ public class Movie implements Parcelable {
      *
      * @return the release date
      */
-    public String getReleaseDate() {
-        return releaseDate;
+    public String getReleaseDate(Locale locale) {
+        return FormatUtils.formatDate(this.releaseDate, locale);
     }
 
     /**
@@ -426,7 +429,7 @@ public class Movie implements Parcelable {
      */
     public int getYear(){
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         Date convertedDate = new Date();
 
@@ -497,9 +500,10 @@ public class Movie implements Parcelable {
      * @return the string
      */
     public String getRuntimeToString(){
+        if(this.runtime == 0)return "";
         int hours = this.runtime/60;
         int mins = this.runtime - (hours*60);
-        String hourSign = "";
+        String hourSign;
         if(hours > 1){
             hourSign = "hs ";
         }else{
@@ -588,6 +592,7 @@ public class Movie implements Parcelable {
      * @return the string format of the budget
      */
     public String getBudgetToString(){
+        if(this.budget == 0)return "Unknown";
         return FormatUtils.formatNumbers(this.budget);
     }
 
@@ -616,6 +621,7 @@ public class Movie implements Parcelable {
      * @return the string format of the revenue
      */
     public String getRevenueToString(){
+        if(this.revenue == 0)return "Unknown";
         return FormatUtils.formatNumbers(this.revenue);
     }
 
@@ -634,7 +640,8 @@ public class Movie implements Parcelable {
      * @return the main language
      */
     public String getMainLanguage() {
-        return mainLanguage;
+        Locale locale = new Locale(this.mainLanguage);
+        return locale.getDisplayLanguage(locale);
     }
 
     /**
@@ -662,6 +669,24 @@ public class Movie implements Parcelable {
      */
     public void setHomepageLink(String homepageLink) {
         this.homepageLink = homepageLink;
+    }
+
+    /**
+     * Get full imdb link for the movie in string form.
+     *
+     * @return the string
+     */
+    public String getImdbLink(){
+        return ApiUrlBuilder.IMDB_BASE_LINK_URL + this.imdbID;
+    }
+
+    /**
+     * Get full tmdb link for the movie in string form.
+     *
+     * @return the string
+     */
+    public String getTmdbLink(){
+        return ApiUrlBuilder.TMDB_BASE_LINK_URL + this.tmdbID;
     }
 
     /**
@@ -762,7 +787,7 @@ public class Movie implements Parcelable {
         this.popularity = in.readDouble();
         this.productionCompanies = in.createTypedArrayList(ProductionCompany.CREATOR);
         this.productionCountries = in.createTypedArrayList(ProductionCountry.CREATOR);
-        this.spokenLanguages = new ArrayList<SpokenLanguage>();
+        this.spokenLanguages = new ArrayList<>();
         in.readList(this.spokenLanguages, SpokenLanguage.class.getClassLoader());
         this.video = in.readByte() != 0;
         this.belongsToCollection = in.readParcelable(BelongsToCollection.class.getClassLoader());

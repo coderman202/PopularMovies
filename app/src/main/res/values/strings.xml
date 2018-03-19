@@ -3,22 +3,24 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="app_name">Popular Movies</string>
-    
-    
-    <!--SUBHEADER STRING-->
-    <string name="overview_sub">Plot/Synopsis:</string>
-    <string name="runtime_sub">Running Time</string>
-    <string name="languages_sub">Languages</string>
-    <string name="genres_sub">Genres</string>
-    <string name="budget_sub">Budget</string>
-    <string name="revenue_sub">Worldwide Revenue</string>
-    <string name="user_rating_sub">User Rating</string>
-    <string name="release_date_sub">Release Date</string>
+
+    <string name="title_activity_detail">DetailActivity</string>
 
     <!--DETAIL ACTIVITY STRINGS-->
     <string name="rating_max">/10</string>
+    <string name="link_header">Links:</string>
+    <string name="vote_count"><xliff:g name="vote_count">%s</xliff:g> votes</string>
+    <string name="imdb_link"><u><xliff:g name="movie_name">%s</xliff:g> on IMDB</u></string>
+    <string name="tmdb_link"><u><xliff:g name="movie_name">%s</xliff:g> on TMDB</u></string>
+    <string name="homepage_link"><u>Official Website</u></string>
 
-    <!--PLACEHOLDER STRINGS-->
+    <!--Subheader Strings-->
+    <string name="languages_sub">Languages</string>
+    <string name="budget_sub">Budget</string>
+    <string name="revenue_sub">Worldwide Revenue</string>
+    <string name="release_date_sub">Release Date</string>
+
+    <!--Placeholder Strings - For design use only-->
     <string name="title_placeholder">Fight Club (1999)</string>
     <string name="overview_placeholder">A ticking-time-bomb insomniac and a slippery soap salesman
         channel primal male aggression into a shocking new form of therapy. Their concept catches
@@ -32,13 +34,19 @@
     <string name="user_rating_placeholder">8.3</string>
     <string name="vote_count_placeholder">1,555 votes</string>
     <string name="release_date_placeholder">1999&#8211;10&#8211;15</string>
-    <string name="movie_year_placeholder">(1999)</string>
-    
+
+    <!--SETTINGS MENU STRINGS-->
+    <string name="top_rated">Top Rated</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="popular">Most Popular</string>
     
     <!--CONTENT DESCRIPTION STRING-->
-    <string name="poster_description">Movie poster</string>
+    <string name="poster_description">Poster for
+        <xliff:g name="movie_name" example="movie">%s</xliff:g></string>
     <string name="backdrop_description">Backdrop image from movie</string>
     <string name="tmdb_logo_description">TMDB Logo - App Powered by The Movie Database</string>
+    <string name="setting_sort_description">Sort/Filter List Options:</string>
 
 
     <!--STRINGS FOR DEALING WITH EXCEPTIONS -->
@@ -56,12 +64,5 @@
     <string name="keyboard_hide_exception">Error hiding keyboard</string>
     <string name="malformed_url_exception">Problem with the thumbnail URL</string>
     <string name="io_exception">Unknown IO exception</string>
-    
-    
-    
-    
-    
-    
-    <string name="title_activity_detail">DetailActivity</string>
-    <string name="action_settings">Settings</string>
+
 </resources>
