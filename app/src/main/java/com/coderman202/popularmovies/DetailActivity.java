@@ -1,25 +1,25 @@
 package com.coderman202.popularmovies;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NavUtils;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.coderman202.popularmovies.adapters.MovieDetailPagerAdapter;
 import com.coderman202.popularmovies.builders.ApiUrlBuilder;
 import com.coderman202.popularmovies.interfaces.MovieDbApiInterface;
 import com.coderman202.popularmovies.model.Movie;
-import com.coderman202.popularmovies.views.ExpandableTextView;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,37 +27,34 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DetailsActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity {
 
-    public static final String LOG_TAG = DetailsActivity.class.getSimpleName();
+    public static final String LOG_TAG = DetailActivity.class.getSimpleName();
 
     // Key to pass and retrieve the Tmdb ID of the movie.
     public static final String MOVIE_ID_KEY = "ID";
 
     // All views to be populated in the layout
     @BindView(R.id.movie_title) TextView titleView;
-    @BindView(R.id.movie_overview) ExpandableTextView overviewView;
     @BindView(R.id.movie_backdrop_img) ImageView backdropView;
     @BindView(R.id.movie_genres) TextView genresView;
-    @BindView(R.id.movie_language) TextView languageView;
-    @BindView(R.id.movie_release_date) TextView releaseDateView;
     @BindView(R.id.movie_runtime) TextView runtimeView;
     @BindView(R.id.movie_rating) TextView ratingView;
     @BindView(R.id.movie_vote_count) TextView voteCountView;
-    @BindView(R.id.movie_budget) TextView budgetView;
-    @BindView(R.id.movie_revenue) TextView revenueView;
-    @BindView(R.id.homepage_link) TextView homepageView;
-    @BindView(R.id.imdb_link) TextView imdbView;
-    @BindView(R.id.tmdb_link) TextView tmdbView;
+    @BindView(R.id.movie_details_tablayout) TabLayout detailsTab;
+    @BindView(R.id.movie_details_viewpager) ViewPager detailsViewPager;
 
     Movie movie;
+
+    MovieDetailPagerAdapter pagerAdapter;
+    FragmentManager fragmentManager;
 
     int tmdbID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details);
+        setContentView(R.layout.activity_detail);
 
         ButterKnife.bind(this);
 
@@ -72,6 +69,18 @@ public class DetailsActivity extends AppCompatActivity {
         }
 
         getMovieDetails();
+
+        setupViewPager();
+    }
+
+    /**
+     *
+     */
+    private void setupViewPager() {
+        fragmentManager = getSupportFragmentManager();
+        pagerAdapter = new MovieDetailPagerAdapter(fragmentManager, this, tmdbID);
+        detailsViewPager.setAdapter(pagerAdapter);
+        detailsTab.setupWithViewPager(detailsViewPager);
     }
 
     // Handling screen rotation
@@ -136,19 +145,8 @@ public class DetailsActivity extends AppCompatActivity {
      */
     private void populateUI() {
         titleView.setText(movie.getTitleDetailed());
-        String backdropUrlPath = movie.getBackdropImageLink();
-
-        if(!TextUtils.isEmpty(backdropUrlPath)){
-            backdropUrlPath = ApiUrlBuilder.BACKDROP_POSTER_PATH_BASE_URL + backdropUrlPath;
-            Picasso.with(this).load(backdropUrlPath).into(backdropView);
-        }
-        overviewView.setText(movie.getOverview());
 
         genresView.setText(movie.getGenresToString());
-
-        releaseDateView.setText(movie.getReleaseDate(Locale.getDefault()));
-
-        languageView.setText(movie.getMainLanguage());
 
         runtimeView.setText(movie.getRuntimeToString());
 
@@ -156,41 +154,11 @@ public class DetailsActivity extends AppCompatActivity {
 
         voteCountView.setText(getResources().getString(R.string.vote_count, movie.getVoteCountToString()));
 
-        budgetView.setText(movie.getBudgetToString());
+        String backdropUrlPath = movie.getBackdropImageLink();
 
-        revenueView.setText(movie.getRevenueToString());
-
-        imdbView.setText(getResources().getString(R.string.imdb_link, movie.getTitle()));
-
-        tmdbView.setText(getResources().getString(R.string.tmdb_link, movie.getTitle()));
-
-        // Three OnClickListeners below so the user can get more info if they wish from the
-        // homepage, IMDB or TMDB
-        homepageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(movie.getHomepageLink()));
-                startActivity(intent);
-            }
-        });
-
-        imdbView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(movie.getImdbLink()));
-                startActivity(intent);
-            }
-        });
-
-        tmdbView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(movie.getTmdbLink()));
-                startActivity(intent);
-            }
-        });
+        if(!TextUtils.isEmpty(backdropUrlPath)){
+            backdropUrlPath = ApiUrlBuilder.BACKDROP_POSTER_PATH_BASE_URL + backdropUrlPath;
+            Picasso.with(this).load(backdropUrlPath).into(backdropView);
+        }
     }
 }

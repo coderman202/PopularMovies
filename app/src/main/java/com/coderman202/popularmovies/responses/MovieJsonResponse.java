@@ -1,4 +1,4 @@
-package com.coderman202.popularmovies.utilities;
+package com.coderman202.popularmovies.responses;
 
 import com.coderman202.popularmovies.model.Movie;
 import com.google.gson.annotations.SerializedName;

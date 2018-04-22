@@ -34,13 +34,33 @@
     <string name="user_rating_placeholder">8.3</string>
     <string name="vote_count_placeholder">1,555 votes</string>
     <string name="release_date_placeholder">1999&#8211;10&#8211;15</string>
+    <string name="username_placeholder">username090</string>
+    <string name="review_placeholder">What a great film. Just a placeholder though but just to see
+        what it is like when I look at it in preview mode, you know. I rate this film 4 stars, but I
+        rate myself 5 stars.</string>
+    <string name="trailer_type_placeholder">Trailer</string>
+    <string name="trailer_name_placeholder">Official Trailer | Fight Club</string>
 
     <!--SETTINGS MENU STRINGS-->
     <string name="top_rated">Top Rated</string>
     <string name="now_playing">Now Playing</string>
     <string name="upcoming">Upcoming</string>
     <string name="popular">Most Popular</string>
-    
+
+    <!--TAB LAYOUT TITLE STRINGS-->
+    <string name="overview_title">Overview</string>
+    <string name="detail_title">Details</string>
+    <string name="trailers_title">Trailers</string>
+    <string name="reviews_title">Reviews</string>
+
+    <string-array name="tablayout_titles_array">
+        <item>@string/overview_title</item>
+        <item>@string/detail_title</item>
+        <item>@string/trailers_title</item>
+        <item>@string/reviews_title</item>
+    </string-array>
+
+
     <!--CONTENT DESCRIPTION STRING-->
     <string name="poster_description">Poster for
         <xliff:g name="movie_name" example="movie">%s</xliff:g></string>

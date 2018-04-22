@@ -14,7 +14,7 @@ import com.coderman202.popularmovies.adapters.MovieListAdapter;
 import com.coderman202.popularmovies.builders.ApiUrlBuilder;
 import com.coderman202.popularmovies.interfaces.MovieDbApiInterface;
 import com.coderman202.popularmovies.model.Movie;
-import com.coderman202.popularmovies.utilities.MovieJsonResponse;
+import com.coderman202.popularmovies.responses.MovieJsonResponse;
 
 import java.io.IOException;
 import java.util.ArrayList;

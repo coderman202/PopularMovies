@@ -2,6 +2,7 @@ package com.coderman202.popularmovies.builders;
 
 import android.content.Context;
 
+import com.coderman202.popularmovies.BuildConfig;
 import com.coderman202.popularmovies.utilities.NetworkConnectionUtils;
 
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class ApiUrlBuilder {
     private static Retrofit retrofitClient = null;
 
     // ENTER YOUR OWN API KEY HERE
-    public static final String API_KEY = "";
+    public static final String API_KEY = BuildConfig.API_KEY;
 
     // Constant - how long til connection will timeout - in milliseconds.
     public static final int CONNECT_TIMEOUT = 15000;
@@ -49,6 +50,11 @@ public class ApiUrlBuilder {
     public static final String IMDB_BASE_LINK_URL = "https://www.imdb.com/title/";
     public final static String MOVIE_POSTER_PATH_BASE_URL = "http://image.tmdb.org/t/p/w200";
     public final static String BACKDROP_POSTER_PATH_BASE_URL = "http://image.tmdb.org/t/p/w500";
+    public final static String YOUTUBE_IMG_BASE_URL = "https://img.youtube.com/vi/";
+    public final static String YOUTUBE_IMG_HQ = "hqdefault.jpg";
+    public final static String YOUTUBE_IMG_MQ = "mqdefault.jpg";
+    public final static String YOUTUBE_IMG_SD= "sddefault.jpg";
+
 
     public static Retrofit getRetrofitClient(Context context) throws IOException{
 

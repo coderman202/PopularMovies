@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.coderman202.popularmovies.DetailActivity">
+
+    <TextView
+        android:id="@+id/movie_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextTitleStyle"
+        android:gravity="start"
+        android:paddingBottom="@dimen/details_screen_item_padding"
+        android:paddingStart="@dimen/details_screen_item_padding"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/movie_rating"
+        tools:text="@string/title_placeholder"/>
+
+    <TextView
+        android:id="@+id/movie_genres"
+        style="@style/MovieDetailsStyle"
+        android:paddingTop="2dp"
+        android:gravity="start"
+        android:textAppearance="@style/TextSubTextStyle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/movie_runtime"
+        app:layout_constraintTop_toBottomOf="@id/movie_vote_count"
+        tools:text="@string/genres_placeholder"/>
+
+    <TextView
+        android:id="@+id/movie_runtime"
+        style="@style/MovieDetailsStyle"
+        android:textAppearance="@style/TextSubTextStyle"
+        android:gravity="end"
+        android:paddingEnd="@dimen/details_screen_item_padding"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/movie_vote_count"
+        tools:text="@string/runtime_placeholder"/>
+
+    <TextView
+        android:id="@+id/movie_rating"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextRatingStyle"
+        android:gravity="end"
+        android:drawableStart="@drawable/rating_star"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/movie_rating_max"
+        tools:text="@string/user_rating_placeholder"/>
+
+    <TextView
+        android:id="@+id/movie_rating_max"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextSubTextStyle"
+        android:paddingEnd="@dimen/details_screen_item_padding"
+        android:text="@string/rating_max"
+        android:gravity="end"
+        app:layout_constraintBottom_toTopOf="@id/movie_vote_count"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/movie_vote_count"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextSubTextStyle"
+        android:paddingEnd="@dimen/details_screen_item_padding"
+        android:textSize="@dimen/details_screen_smaller_text_size"
+        android:gravity="top|end"
+        app:layout_constraintTop_toBottomOf="@id/movie_rating"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="@string/vote_count_placeholder"/>
+
+    <ImageView
+        android:id="@+id/movie_backdrop_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toBottomOf="@id/movie_genres"
+        android:contentDescription="@string/backdrop_description"
+        tools:src="@drawable/placeholder_image"/>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/movie_details_tablayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:tabTextColor="@color/colorPrimaryText"
+        app:tabSelectedTextColor="@color/colorAccent"
+        android:padding="@dimen/details_screen_item_padding"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/movie_backdrop_img"
+        android:layout_gravity="center_horizontal"
+        app:tabMode="scrollable"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/movie_details_viewpager"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/movie_details_tablayout"
+        android:layout_gravity="center_horizontal"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+</android.support.constraint.ConstraintLayout>

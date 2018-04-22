@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:paddingBottom="@dimen/default_margin">
+
+    <TextView
+        android:id="@+id/movie_overview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/details_screen_item_padding"
+        android:paddingTop="@dimen/details_screen_item_padding"
+        android:textAppearance="@style/TextBodyStyle"
+        tools:text="@string/overview_placeholder"/>
+</ScrollView>
