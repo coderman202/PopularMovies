@@ -81,9 +81,20 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
+        android:src="@drawable/backdrop_placeholder"
         app:layout_constraintTop_toBottomOf="@id/movie_genres"
         android:contentDescription="@string/backdrop_description"
-        tools:src="@drawable/placeholder_image"/>
+        tools:src="@drawable/backdrop_placeholder"/>
+
+    <ImageView
+        android:id="@+id/fave_star"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/movie_backdrop_img"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="@dimen/details_screen_item_padding"
+        android:src="@drawable/is_removed_star"
+        android:contentDescription="@string/fave_star_description"/>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/movie_details_tablayout"
@@ -106,5 +117,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/movie_details_tablayout"
         android:layout_gravity="center_horizontal"
+        android:nestedScrollingEnabled="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 </android.support.constraint.ConstraintLayout>

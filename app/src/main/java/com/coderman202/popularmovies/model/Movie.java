@@ -108,15 +108,15 @@ public class Movie implements Parcelable {
 
     @SerializedName("production_companies")
     @Expose
-    private List<ProductionCompany> productionCompanies = null;
+    private List<ProductionCompany> productionCompanies;
 
     @SerializedName("production_countries")
     @Expose
-    private List<ProductionCountry> productionCountries = null;
+    private List<ProductionCountry> productionCountries;
 
     @SerializedName("spoken_languages")
     @Expose
-    private List<SpokenLanguage> spokenLanguages = null;
+    private List<SpokenLanguage> spokenLanguages;
 
     @SerializedName("video")
     @Expose

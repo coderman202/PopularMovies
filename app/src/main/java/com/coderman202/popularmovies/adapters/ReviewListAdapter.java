@@ -1,6 +1,5 @@
 package com.coderman202.popularmovies.adapters;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -29,7 +28,6 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewListAdapter.Vi
     private static final int ITEM_LEFT = 0;
     private static final int ITEM_RIGHT = 1;
 
-    private Context context;
     private List<MovieReview> reviewList;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -44,8 +42,7 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewListAdapter.Vi
         }
     }
 
-    public ReviewListAdapter(Context context) {
-        this.context = context;
+    public ReviewListAdapter() {
     }
 
 

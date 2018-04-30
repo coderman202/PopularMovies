@@ -2,6 +2,7 @@ package com.coderman202.popularmovies;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -45,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
     // Layout Manager for Movie List Adapter
     GridLayoutManager movieListLayoutManager;
 
+    // Key for saving the scroll position of the RecyclerView.
+    public static final String BUNDLE_RECYCLER_LAYOUT_KEY = "RecyclerView Layout";
+
     // Number grid items to span the screen. To be set depending on the screen rotation
     int layoutSpanCount;
 
@@ -71,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
         if(savedInstanceState != null){
             userPref = savedInstanceState.getString(USER_PREF_KEY);
+            Parcelable savedRecyclerLayoutState = savedInstanceState.getParcelable(BUNDLE_RECYCLER_LAYOUT_KEY);
+            movieListLayoutManager.onRestoreInstanceState(savedRecyclerLayoutState);
         }
 
         initRecyclerView();
@@ -87,12 +93,15 @@ public class MainActivity extends AppCompatActivity {
     public void onSaveInstanceState(Bundle outState){
         super.onSaveInstanceState(outState);
         outState.putString(USER_PREF_KEY, userPref);
+        outState.putParcelable(BUNDLE_RECYCLER_LAYOUT_KEY, movieListLayoutManager.onSaveInstanceState());
     }
 
     // Handling screen rotations.
     @Override
     public void onRestoreInstanceState(Bundle inState){
         userPref = inState.getString(USER_PREF_KEY);
+        Parcelable savedRecyclerLayoutState = inState.getParcelable(BUNDLE_RECYCLER_LAYOUT_KEY);
+        movieListLayoutManager.onRestoreInstanceState(savedRecyclerLayoutState);
     }
 
     /**

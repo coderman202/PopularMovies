@@ -21,13 +21,12 @@ import com.coderman202.popularmovies.fragments.TrailersFragment;
 
 public class MovieDetailPagerAdapter extends FragmentPagerAdapter {
 
-    private Context context;
+
     private String[] titlesArray;
     private int tmdbID;
 
     public MovieDetailPagerAdapter(FragmentManager fm, Context context, int tmdbID) {
         super(fm);
-        this.context = context;
         titlesArray = context.getResources().getStringArray(R.array.tablayout_titles_array);
         this.tmdbID = tmdbID;
     }

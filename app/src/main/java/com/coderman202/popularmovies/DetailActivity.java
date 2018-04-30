@@ -1,17 +1,21 @@
 package com.coderman202.popularmovies;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NavUtils;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.coderman202.popularmovies.adapters.MovieDetailPagerAdapter;
 import com.coderman202.popularmovies.builders.ApiUrlBuilder;
@@ -27,7 +31,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity implements View.OnClickListener{
 
     public static final String LOG_TAG = DetailActivity.class.getSimpleName();
 
@@ -43,6 +47,11 @@ public class DetailActivity extends AppCompatActivity {
     @BindView(R.id.movie_vote_count) TextView voteCountView;
     @BindView(R.id.movie_details_tablayout) TabLayout detailsTab;
     @BindView(R.id.movie_details_viewpager) ViewPager detailsViewPager;
+    @BindView(R.id.fave_star) ImageView faveStarView;
+
+    Drawable addStar;
+    Drawable removeStar;
+
 
     Movie movie;
 
@@ -60,6 +69,9 @@ public class DetailActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        addStar = ResourcesCompat.getDrawable(getResources(), R.drawable.is_added_star, null);
+        removeStar = ResourcesCompat.getDrawable(getResources(), R.drawable.is_removed_star, null);
+
         if(savedInstanceState == null){
             Intent intent = getIntent();
             tmdbID = intent.getIntExtra(MOVIE_ID_KEY, 0);
@@ -68,9 +80,35 @@ public class DetailActivity extends AppCompatActivity {
             tmdbID = savedInstanceState.getInt(MOVIE_ID_KEY);
         }
 
+        faveStarView.setOnClickListener(this);
+
         getMovieDetails();
 
         setupViewPager();
+    }
+
+    @Override
+    public void onClick(View view){
+        int id = view.getId();
+        switch (id) {
+            case R.id.fave_star:
+                addOrRemoveFromFavourites();
+                break;
+        }
+    }
+
+    public void addOrRemoveFromFavourites(){
+        String message;
+        if(faveStarView.getDrawable() == addStar){
+            faveStarView.setImageDrawable(removeStar);
+            message = getString(R.string.remove_from_faves, movie.getTitle());
+        }
+        else{
+            faveStarView.setImageDrawable(addStar);
+            message = getString(R.string.add_to_faves, movie.getTitle());
+        }
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
     }
 
     /**
@@ -158,7 +196,7 @@ public class DetailActivity extends AppCompatActivity {
 
         if(!TextUtils.isEmpty(backdropUrlPath)){
             backdropUrlPath = ApiUrlBuilder.BACKDROP_POSTER_PATH_BASE_URL + backdropUrlPath;
-            Picasso.with(this).load(backdropUrlPath).into(backdropView);
+            Picasso.with(this).load(backdropUrlPath).placeholder(R.drawable.backdrop_placeholder).error(R.drawable.backdrop_placeholder).into(backdropView);
         }
     }
 }

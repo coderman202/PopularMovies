@@ -21,6 +21,7 @@
     <dimen name="tmdb_logo_abs_width">407dp</dimen>
     <dimen name="tmdb_logo_abs_height">160dp</dimen>
     <dimen name="tmdb_logo_height">45dp</dimen>
+    <dimen name="fave_star_size">48dp</dimen>
 
 
 </resources>

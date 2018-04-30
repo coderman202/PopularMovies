@@ -129,7 +129,7 @@ public class ReviewsFragment extends Fragment {
         reviewListView.setHasFixedSize(true);
         ColorDrawable divider = new ColorDrawable(ContextCompat.getColor(getContext(), R.color.greyed_text_color));
         reviewListView.addItemDecoration(new DividerItemDecoration(divider));
-        reviewListAdapter = new ReviewListAdapter(this.getContext());
+        reviewListAdapter = new ReviewListAdapter();
         reviewListView.setAdapter(reviewListAdapter);
 
     }

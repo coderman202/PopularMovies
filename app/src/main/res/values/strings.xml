@@ -13,6 +13,8 @@
     <string name="imdb_link"><u><xliff:g name="movie_name">%s</xliff:g> on IMDB</u></string>
     <string name="tmdb_link"><u><xliff:g name="movie_name">%s</xliff:g> on TMDB</u></string>
     <string name="homepage_link"><u>Official Website</u></string>
+    <string name="add_to_faves"><xliff:g name="movie_name">%s</xliff:g> added to favourites.</string>
+    <string name="remove_from_faves"><xliff:g name="movie_name">%s</xliff:g> removed from favourites.</string>
 
     <!--Subheader Strings-->
     <string name="languages_sub">Languages</string>
@@ -67,6 +69,10 @@
     <string name="backdrop_description">Backdrop image from movie</string>
     <string name="tmdb_logo_description">TMDB Logo - App Powered by The Movie Database</string>
     <string name="setting_sort_description">Sort/Filter List Options:</string>
+    <string name="fave_star_description">Star Button - Add/Remove From Favourites</string>
+    <string name="rating_star_description">Star Rating Image</string>
+    <string name="trailer_image_description">Trailer Image</string>
+    <string name="play_trailer_button_description">Play Trailer Button</string>
 
 
     <!--STRINGS FOR DEALING WITH EXCEPTIONS -->
@@ -84,5 +90,14 @@
     <string name="keyboard_hide_exception">Error hiding keyboard</string>
     <string name="malformed_url_exception">Problem with the thumbnail URL</string>
     <string name="io_exception">Unknown IO exception</string>
+
+    <!--Content Uri Exceptions-->
+    <string name="content_uri_tmdb_id_exception">Movie requires a valid id</string>
+    <string name="content_uri_poster_url_exception">Movie requires a valid poster url.</string>
+    <string name="content_uri_unsupported_deletion_exception">Deletion is not supported for <xliff:g name="URI">%s</xliff:g></string>
+    <string name="content_uri_unsupported_update_exception">Update is not supported for <xliff:g name="URI">%s</xliff:g></string>
+    <string name="content_uri_unsupported_insertion_exception">Insertion is not supported for <xliff:g name="URI">%s</xliff:g></string>
+    <string name="content_uri_insert_failure_exception">Failed to insert row for <xliff:g name="URI">%s</xliff:g></string>
+    <string name="content_uri_unknown_exception">Unknown URI <xliff:g name="URI">%s</xliff:g> for <xliff:g name="UriMatcher">%d</xliff:g></string>
 
 </resources>
