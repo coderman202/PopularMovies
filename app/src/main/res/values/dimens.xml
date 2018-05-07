@@ -11,6 +11,7 @@
     <dimen name="details_screen_title_text_size">20sp</dimen>
     <dimen name="details_screen_smaller_text_size">10sp</dimen>
 
+    <dimen name="padded_view_height">200dp</dimen>
     <dimen name="trailer_thumbnail_height">70dp</dimen>
 
     <!--DRAWABLE DIMENS-->

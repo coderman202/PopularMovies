@@ -132,5 +132,16 @@ public class ReviewsFragment extends Fragment {
         reviewListAdapter = new ReviewListAdapter();
         reviewListView.setAdapter(reviewListAdapter);
 
+        Log.e(LOG_TAG, "review count:" + reviewListAdapter.getItemCount());
+
+        if(reviewListAdapter.getItemCount() == 0){
+            reviewListView.setVisibility(View.GONE);
+            reviewCountView.setVisibility(View.VISIBLE);
+        }
+        else{
+            reviewListView.setVisibility(View.VISIBLE);
+            reviewCountView.setVisibility(View.GONE);
+        }
+
     }
 }

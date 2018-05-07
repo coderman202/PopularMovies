@@ -22,6 +22,10 @@
     <string name="revenue_sub">Worldwide Revenue</string>
     <string name="release_date_sub">Release Date</string>
 
+    <!--Review and Trailers Layout Strings-->
+    <string name="empty_reviews_string">No reviews yet.</string>
+    <string name="empty_trailers_string">No trailers found yet.</string>
+
     <!--Placeholder Strings - For design use only-->
     <string name="title_placeholder">Fight Club (1999)</string>
     <string name="overview_placeholder">A ticking-time-bomb insomniac and a slippery soap salesman

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.coderman202.popularmovies.R;
 import com.coderman202.popularmovies.adapters.TrailerListAdapter;
@@ -43,6 +44,7 @@ public class TrailersFragment extends Fragment {
 
     // All views to be populated in the layout
     @BindView(R.id.trailers_list_view) RecyclerView trailersListView;
+    @BindView(R.id.trailer_count) TextView trailerCountView;
 
     TrailerListAdapter trailerListAdapter;
 
@@ -129,5 +131,14 @@ public class TrailersFragment extends Fragment {
         trailersListView.addItemDecoration(new DividerItemDecoration(divider));
         trailerListAdapter = new TrailerListAdapter(this.getContext());
         trailersListView.setAdapter(trailerListAdapter);
+
+        if(trailerListAdapter.getItemCount() == 0){
+            trailersListView.setVisibility(View.GONE);
+            trailerCountView.setVisibility(View.VISIBLE);
+        }
+        else{
+            trailersListView.setVisibility(View.VISIBLE);
+            trailerCountView.setVisibility(View.GONE);
+        }
     }
 }
