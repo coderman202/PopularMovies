@@ -15,6 +15,7 @@ import com.coderman202.popularmovies.R;
 import com.coderman202.popularmovies.builders.ApiUrlBuilder;
 import com.coderman202.popularmovies.model.MovieTrailer;
 import com.coderman202.popularmovies.responses.MovieTrailerJsonResponse;
+import com.coderman202.popularmovies.utilities.PopularMoviesUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -31,9 +32,6 @@ public class TrailerListAdapter extends RecyclerView.Adapter<TrailerListAdapter.
 
     private static final String LOG_TAG = TrailerListAdapter.class.getSimpleName();
 
-    private static final int ITEM_LEFT = 0;
-    private static final int ITEM_RIGHT = 1;
-
     private Context context;
     private List<MovieTrailer> trailerList;
 
@@ -43,9 +41,9 @@ public class TrailerListAdapter extends RecyclerView.Adapter<TrailerListAdapter.
         TextView trailerTypeView;
         @BindView(R.id.trailer_name) TextView trailerNameView;
         @BindView(R.id.trailer_img)
-        ImageView trailerItem;
+        ImageView trailerItemView;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
         }
@@ -81,16 +79,16 @@ public class TrailerListAdapter extends RecyclerView.Adapter<TrailerListAdapter.
         if(!TextUtils.isEmpty(thumbnailUrlKey)){
             String thumbnailUrlPath = ApiUrlBuilder.YOUTUBE_IMG_BASE_URL + thumbnailUrlKey + "/" + ApiUrlBuilder.YOUTUBE_IMG_HQ;
             Log.e(LOG_TAG, thumbnailUrlPath);
-            Picasso.with(context).load(thumbnailUrlPath).into(holder.trailerItem);
+            Picasso.with(context).load(thumbnailUrlPath).into(holder.trailerItemView);
         }
 
-        holder.trailerTypeView.setOnClickListener(new View.OnClickListener() {
+        holder.trailerItemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                PopularMoviesUtils.openYoutubeLink(context, trailer.getKey());
 
             }
         });
-
     }
 
     /**

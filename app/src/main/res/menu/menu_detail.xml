@@ -26,4 +26,11 @@
         android:orderInCategory="500"
         android:title="@string/top_rated"
         app:showAsAction="never"/>
+
+
+    <item
+        android:id="@+id/fave_option"
+        android:orderInCategory="600"
+        android:title="@string/favourites"
+        app:showAsAction="never"/>
 </menu>

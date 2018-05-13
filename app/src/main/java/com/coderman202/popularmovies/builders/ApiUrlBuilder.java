@@ -43,6 +43,7 @@ public class ApiUrlBuilder {
     public static final String OPTION_UPCOMING = "upcoming";
     public static final String OPTION_POPULAR = "popular";
     public static final String OPTION_TOP_RATED = "top_rated";
+    public static final String OPTION_FAVOURITES = "favourites";
 
     // Base URLs
     public static final String TMDB_BASE_URL = "http://api.themoviedb.org/3/";
@@ -54,6 +55,8 @@ public class ApiUrlBuilder {
     public final static String YOUTUBE_IMG_HQ = "hqdefault.jpg";
     public final static String YOUTUBE_IMG_MQ = "mqdefault.jpg";
     public final static String YOUTUBE_IMG_SD= "sddefault.jpg";
+    public static final String YOUTUBE_TRAILER_WEB_BASE_URL = "https:/youtube.com/watch?v=";
+    public static final String YOUTUBE_TRAILER_APP_BASE_URL = "vnd.youtube:";
 
 
     public static Retrofit getRetrofitClient(Context context) throws IOException{

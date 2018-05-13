@@ -18,7 +18,7 @@ import com.coderman202.popularmovies.R;
 
 public class FavouritesProvider extends ContentProvider {
 
-    public static final String LOG_TAG = FavouritesProvider.class.getSimpleName();
+    private static final String LOG_TAG = FavouritesProvider.class.getSimpleName();
 
     // FAVOURITES TABLE CONSTANTS
     private static final int FAVOURITES_TABLE = 100;
@@ -213,7 +213,7 @@ public class FavouritesProvider extends ContentProvider {
                 return db.delete(FAVOURITES_TABLE_NAME, selection, selectionArgs);
             case FAVOURITES_TABLE_ROW:
                 // Delete a single row given by the ID in the URI
-                selection = TMDB_ID + "=?";
+                selection = FAVE_MOVIE_KEY + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
                 return db.delete(FAVOURITES_TABLE_NAME, selection, selectionArgs);
             default:

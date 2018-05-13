@@ -37,7 +37,7 @@ import retrofit2.Response;
 
 public class ReviewsFragment extends Fragment {
 
-    public static final String LOG_TAG = ReviewsFragment.class.getSimpleName();
+    private static final String LOG_TAG = ReviewsFragment.class.getSimpleName();
 
     // Key to pass and retrieve the Tmdb ID of the movie.
     public static final String MOVIE_ID_KEY = "ID";
@@ -52,8 +52,6 @@ public class ReviewsFragment extends Fragment {
     ReviewListAdapter reviewListAdapter;
 
     LinearLayoutManager reviewListLayoutManager;
-
-    DividerItemDecoration dividerItemDecoration;
 
     public ReviewsFragment() {
     }
@@ -88,7 +86,7 @@ public class ReviewsFragment extends Fragment {
     }
 
     /**
-     * Get the movie trailersusing the defined interface in:
+     * Get the movie trailers using the defined interface in:
      * {@link MovieDbApiInterface}
      */
     private void getMovieReviews(){
@@ -105,6 +103,7 @@ public class ReviewsFragment extends Fragment {
                     if(response.isSuccessful()){
                         movieReviewList = response.body().getReviewList();
                         reviewListAdapter.setReviewList(movieReviewList);
+                        setEmptyView();
                     }
                 }
 
@@ -132,16 +131,16 @@ public class ReviewsFragment extends Fragment {
         reviewListAdapter = new ReviewListAdapter();
         reviewListView.setAdapter(reviewListAdapter);
 
-        Log.e(LOG_TAG, "review count:" + reviewListAdapter.getItemCount());
+    }
 
+    //If no reviews, tell user via TextView.
+    private void setEmptyView() {
         if(reviewListAdapter.getItemCount() == 0){
             reviewListView.setVisibility(View.GONE);
             reviewCountView.setVisibility(View.VISIBLE);
-        }
-        else{
+        } else{
             reviewListView.setVisibility(View.VISIBLE);
             reviewCountView.setVisibility(View.GONE);
         }
-
     }
 }

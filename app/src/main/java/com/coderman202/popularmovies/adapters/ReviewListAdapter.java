@@ -25,9 +25,6 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewListAdapter.Vi
 
     private static final String LOG_TAG = ReviewListAdapter.class.getSimpleName();
 
-    private static final int ITEM_LEFT = 0;
-    private static final int ITEM_RIGHT = 1;
-
     private List<MovieReview> reviewList;
 
     public class ViewHolder extends RecyclerView.ViewHolder {

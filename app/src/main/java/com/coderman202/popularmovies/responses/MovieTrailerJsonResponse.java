@@ -32,7 +32,7 @@ public class MovieTrailerJsonResponse {
     }
 
     public void setTrailerList(List<MovieTrailer> trailerList) {
-        this.trailerList = this.trailerList;
+        this.trailerList = trailerList;
     }
 
 }

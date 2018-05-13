@@ -4,8 +4,6 @@
 
     <string name="app_name">Popular Movies</string>
 
-    <string name="title_activity_detail">DetailActivity</string>
-
     <!--DETAIL ACTIVITY STRINGS-->
     <string name="rating_max">/10</string>
     <string name="link_header">Links:</string>
@@ -52,6 +50,7 @@
     <string name="now_playing">Now Playing</string>
     <string name="upcoming">Upcoming</string>
     <string name="popular">Most Popular</string>
+    <string name="favourites">Favourites</string>
 
     <!--TAB LAYOUT TITLE STRINGS-->
     <string name="overview_title">Overview</string>
@@ -68,13 +67,11 @@
 
 
     <!--CONTENT DESCRIPTION STRING-->
-    <string name="poster_description">Poster for
-        <xliff:g name="movie_name" example="movie">%s</xliff:g></string>
+    <string name="poster_description">Poster for movie</string>
     <string name="backdrop_description">Backdrop image from movie</string>
     <string name="tmdb_logo_description">TMDB Logo - App Powered by The Movie Database</string>
     <string name="setting_sort_description">Sort/Filter List Options:</string>
     <string name="fave_star_description">Star Button - Add/Remove From Favourites</string>
-    <string name="rating_star_description">Star Rating Image</string>
     <string name="trailer_image_description">Trailer Image</string>
     <string name="play_trailer_button_description">Play Trailer Button</string>
 
@@ -90,6 +87,8 @@
     <string name="no_network_connection">
         Error. No network connection or unable to connect to network.
     </string>
+    <string name="no_favourites">You have no favourites selected.</string>
+    <string name="no_results">No results for chosen preference. Please try another one.</string>
     <string name="null_pointer_exception">Error. No response code found.</string>
     <string name="keyboard_hide_exception">Error hiding keyboard</string>
     <string name="malformed_url_exception">Problem with the thumbnail URL</string>

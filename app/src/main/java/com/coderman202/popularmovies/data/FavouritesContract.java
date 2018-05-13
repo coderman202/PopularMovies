@@ -13,7 +13,7 @@ public class FavouritesContract {
 
     // The content authority and the base content URI which will be used to generate all URIs in
     // this contract class.
-    public static final String CONTENT_AUTHORITY = "com.example.android.popularmovies";
+    public static final String CONTENT_AUTHORITY = "com.coderman202.popularmovies";
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 
     // Empty private constructor. Ensures class is not going to be initialised.

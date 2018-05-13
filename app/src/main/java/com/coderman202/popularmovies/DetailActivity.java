@@ -1,7 +1,11 @@
 package com.coderman202.popularmovies;
 
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
@@ -19,6 +23,7 @@ import android.widget.Toast;
 
 import com.coderman202.popularmovies.adapters.MovieDetailPagerAdapter;
 import com.coderman202.popularmovies.builders.ApiUrlBuilder;
+import com.coderman202.popularmovies.data.FavouritesContract;
 import com.coderman202.popularmovies.interfaces.MovieDbApiInterface;
 import com.coderman202.popularmovies.model.Movie;
 import com.squareup.picasso.Picasso;
@@ -33,7 +38,7 @@ import retrofit2.Response;
 
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener{
 
-    public static final String LOG_TAG = DetailActivity.class.getSimpleName();
+    private static final String LOG_TAG = DetailActivity.class.getSimpleName();
 
     // Key to pass and retrieve the Tmdb ID of the movie.
     public static final String MOVIE_ID_KEY = "ID";
@@ -49,16 +54,24 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     @BindView(R.id.movie_details_viewpager) ViewPager detailsViewPager;
     @BindView(R.id.fave_star) ImageView faveStarView;
 
+    // Show either of these depending on if the user has added the movies to their favourites or not
     Drawable addStar;
     Drawable removeStar;
 
-
     Movie movie;
 
+    // These work with the TabLayout to display the correct custom {@link Fragment}
     MovieDetailPagerAdapter pagerAdapter;
     FragmentManager fragmentManager;
 
     int tmdbID;
+
+    // Columns for the favourites DB
+    public static final String[] FAVE_MOVIE_ENTRY_COLUMNS = {
+            FavouritesContract.FaveMovieEntry.PK_FAVE_MOVIE_KEY,
+            FavouritesContract.FaveMovieEntry.TMDB_ID,
+            FavouritesContract.FaveMovieEntry.POSTER_URL
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,18 +110,70 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    public void addOrRemoveFromFavourites(){
+
+    /**
+     * Method to handle when a user adds or removes a movies from their favourites
+     */
+    private void addOrRemoveFromFavourites() {
         String message;
         if(faveStarView.getDrawable() == addStar){
             faveStarView.setImageDrawable(removeStar);
             message = getString(R.string.remove_from_faves, movie.getTitle());
-        }
-        else{
+
+            removeFromFaves();
+        } else{
             faveStarView.setImageDrawable(addStar);
             message = getString(R.string.add_to_faves, movie.getTitle());
+
+            addToFaves();
+
         }
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
+        Uri uri = FavouritesContract.FaveMovieEntry.CONTENT_URI;
+        Cursor cursor = getContentResolver().query(uri, FAVE_MOVIE_ENTRY_COLUMNS, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            for (int i = 0; i < cursor.getCount(); i++) {
+                Log.e(LOG_TAG, cursor.getString(cursor.getColumnIndex(FavouritesContract.FaveMovieEntry.POSTER_URL)));
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+
+    }
+
+    // Adding an item to the favourites DD
+    private void addToFaves() {
+        ContentValues values = new ContentValues();
+        values.put(FavouritesContract.FaveMovieEntry.TMDB_ID, tmdbID);
+        values.put(FavouritesContract.FaveMovieEntry.POSTER_URL, movie.getPosterImageLink());
+
+        Uri uri = FavouritesContract.FaveMovieEntry.CONTENT_URI;
+
+        getContentResolver().insert(uri, values);
+    }
+
+    // Removing an item from the favourites DB
+    private void removeFromFaves() {
+        Uri uri = FavouritesContract.FaveMovieEntry.CONTENT_URI;
+
+        String selection = "TMDB_ID = ?";
+        String[] selectionArgs = new String[]{Integer.toString(tmdbID)};
+
+        Cursor cursor = getContentResolver().query(uri, FAVE_MOVIE_ENTRY_COLUMNS, selection, selectionArgs, null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            long faveID = cursor.getLong(cursor.getColumnIndex(FavouritesContract.FaveMovieEntry.PK_FAVE_MOVIE_KEY));
+
+            uri = ContentUris.withAppendedId(FavouritesContract.FaveMovieEntry.CONTENT_URI, faveID);
+
+            getContentResolver().delete(uri, null, null);
+        }
+
+        cursor.close();
     }
 
     /**
@@ -198,5 +263,28 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             backdropUrlPath = ApiUrlBuilder.BACKDROP_POSTER_PATH_BASE_URL + backdropUrlPath;
             Picasso.with(this).load(backdropUrlPath).placeholder(R.drawable.backdrop_placeholder).error(R.drawable.backdrop_placeholder).into(backdropView);
         }
+
+        if (favouritesCheck()) {
+            faveStarView.setImageDrawable(addStar);
+        } else {
+            faveStarView.setImageDrawable(removeStar);
+        }
+    }
+
+    // Method to check if the movie is in the favourites or not
+    private boolean favouritesCheck() {
+
+        Uri uri = FavouritesContract.FaveMovieEntry.CONTENT_URI;
+
+        String selection = "TMDB_ID = ?";
+        String[] selectionArgs = new String[]{Integer.toString(tmdbID)};
+
+        Cursor cursor = getContentResolver().query(uri, FAVE_MOVIE_ENTRY_COLUMNS, selection, selectionArgs, null);
+
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.close();
+            return true;
+        }
+        return false;
     }
 }

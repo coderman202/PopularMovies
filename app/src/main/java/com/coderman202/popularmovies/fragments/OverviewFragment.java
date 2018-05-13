@@ -28,7 +28,7 @@ import retrofit2.Response;
 
 public class OverviewFragment extends Fragment {
 
-    public static final String LOG_TAG = OverviewFragment.class.getSimpleName();
+    private static final String LOG_TAG = OverviewFragment.class.getSimpleName();
 
     // Key to pass and retrieve the Tmdb ID of the movie.
     public static final String MOVIE_ID_KEY = "ID";

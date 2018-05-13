@@ -48,7 +48,7 @@ public interface MovieDbApiInterface {
                                          @Query("page") int pageNum);
 
     /**
-     * Gets a list of movie trailers  for the particular movie id.
+     * Gets a list of movie trailers for the particular movie id.
      * Returned in the form of a MovieTrailerJsonResponse object which is equivalent to a list of
      * movie trailers.
      *
@@ -62,7 +62,7 @@ public interface MovieDbApiInterface {
 
 
     /**
-     * Gets a list of movie reviews  for the particular movie id.
+     * Gets a list of movie reviews for the particular movie id.
      * Returned in the form of a MovieReviewJsonResponse object which is equivalent to a list of
      * movie reviews.
      *

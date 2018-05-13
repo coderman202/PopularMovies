@@ -24,7 +24,8 @@
 
         <provider
             android:authorities="com.coderman202.popularmovies"
-            android:name=".data.FavouritesProvider"
+            android:name="com.coderman202.popularmovies.data.FavouritesProvider"
+            android:grantUriPermissions="true"
             android:exported="false"/>
 
         <activity android:name=".DetailActivity"

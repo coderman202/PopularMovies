@@ -17,6 +17,48 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tmdb_logo"/>
 
+    <TextView
+        android:id="@+id/no_connection"
+        style="@style/TextBodyStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tmdb_logo"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="@string/no_network_connection"
+        android:drawableTop="@drawable/no_connection"/>
+
+    <TextView
+        android:id="@+id/no_favourites"
+        style="@style/TextBodyStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tmdb_logo"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="@string/no_favourites"
+        android:drawableTop="@drawable/no_favourites_folder"/>
+
+    <TextView
+        android:id="@+id/no_results"
+        style="@style/TextBodyStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tmdb_logo"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="@string/no_results"
+        android:drawableTop="@drawable/empty_list"/>
+
     <ImageView
         android:id="@+id/tmdb_logo"
         style="@style/MovieDetailsStyle"

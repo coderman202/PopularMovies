@@ -22,8 +22,4 @@ public class NetworkConnectionUtils {
         NetworkInfo info = manager.getActiveNetworkInfo();
         return (info != null && info.isConnected());
     }
-
-
-
-
 }

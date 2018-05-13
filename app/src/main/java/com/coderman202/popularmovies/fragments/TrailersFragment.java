@@ -37,7 +37,7 @@ import retrofit2.Response;
 
 public class TrailersFragment extends Fragment {
 
-    public static final String LOG_TAG = TrailersFragment.class.getSimpleName();
+    private static final String LOG_TAG = TrailersFragment.class.getSimpleName();
 
     // Key to pass and retrieve the Tmdb ID of the movie.
     public static final String MOVIE_ID_KEY = "ID";
@@ -49,8 +49,6 @@ public class TrailersFragment extends Fragment {
     TrailerListAdapter trailerListAdapter;
 
     LinearLayoutManager trailerListLayoutManager;
-
-    DividerItemDecoration dividerItemDecoration;
 
     private int tmdbID;
     List<MovieTrailer> movieTrailerList = new ArrayList<>();
@@ -105,6 +103,7 @@ public class TrailersFragment extends Fragment {
                     if(response.isSuccessful()){
                         movieTrailerList = response.body().getTrailerList();
                         trailerListAdapter.setTrailerList(movieTrailerList);
+                        setEmptyView();
                     }
                 }
 
@@ -131,12 +130,14 @@ public class TrailersFragment extends Fragment {
         trailersListView.addItemDecoration(new DividerItemDecoration(divider));
         trailerListAdapter = new TrailerListAdapter(this.getContext());
         trailersListView.setAdapter(trailerListAdapter);
+    }
 
+    //If there are no trailers, show TextView telling user that.
+    private void setEmptyView() {
         if(trailerListAdapter.getItemCount() == 0){
             trailersListView.setVisibility(View.GONE);
             trailerCountView.setVisibility(View.VISIBLE);
-        }
-        else{
+        } else{
             trailersListView.setVisibility(View.VISIBLE);
             trailerCountView.setVisibility(View.GONE);
         }

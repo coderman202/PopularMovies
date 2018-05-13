@@ -16,14 +16,14 @@ import com.coderman202.popularmovies.fragments.TrailersFragment;
 
 /**
  * Created by Reggie on 25/03/2018.
- * Custom pager adapter to handle on screen rotation better.
+ * Custom pager adapter to handle which custom Fragment to display with the TabLayout.
  */
 
 public class MovieDetailPagerAdapter extends FragmentPagerAdapter {
 
 
-    private String[] titlesArray;
-    private int tmdbID;
+    private final String[] titlesArray;
+    private final int tmdbID;
 
     public MovieDetailPagerAdapter(FragmentManager fm, Context context, int tmdbID) {
         super(fm);
