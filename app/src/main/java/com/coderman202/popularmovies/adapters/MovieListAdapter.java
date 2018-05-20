@@ -83,7 +83,11 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.View
 
         if(!TextUtils.isEmpty(posterUrlPath)){
             posterUrlPath = ApiUrlBuilder.MOVIE_POSTER_PATH_BASE_URL + posterUrlPath;
-            Picasso.with(context).load(posterUrlPath).into(holder.moviePosterView);
+            Picasso.with(context)
+                    .load(posterUrlPath)
+                    .error(R.drawable.loading_error)
+                    .placeholder(R.drawable.loading_progress)
+                    .into(holder.moviePosterView);
         }
 
         holder.moviePosterView.setOnClickListener(new View.OnClickListener() {

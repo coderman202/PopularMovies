@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,8 +77,11 @@ public class TrailerListAdapter extends RecyclerView.Adapter<TrailerListAdapter.
 
         if(!TextUtils.isEmpty(thumbnailUrlKey)){
             String thumbnailUrlPath = ApiUrlBuilder.YOUTUBE_IMG_BASE_URL + thumbnailUrlKey + "/" + ApiUrlBuilder.YOUTUBE_IMG_HQ;
-            Log.e(LOG_TAG, thumbnailUrlPath);
-            Picasso.with(context).load(thumbnailUrlPath).into(holder.trailerItemView);
+            Picasso.with(context)
+                    .load(thumbnailUrlPath)
+                    .error(R.drawable.loading_error)
+                    .placeholder(R.drawable.loading_progress)
+                    .into(holder.trailerItemView);
         }
 
         holder.trailerItemView.setOnClickListener(new View.OnClickListener() {

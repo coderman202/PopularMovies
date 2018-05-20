@@ -38,10 +38,14 @@ import retrofit2.Response;
 
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener{
 
+
     private static final String LOG_TAG = DetailActivity.class.getSimpleName();
 
     // Key to pass and retrieve the Tmdb ID of the movie.
     public static final String MOVIE_ID_KEY = "ID";
+
+    // Key to pass and retrieve the current page of the ViewPager.
+    public static final String PAGER_POSITION = "PAGER";
 
     // All views to be populated in the layout
     @BindView(R.id.movie_title) TextView titleView;
@@ -91,6 +95,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         }
         else{
             tmdbID = savedInstanceState.getInt(MOVIE_ID_KEY);
+            detailsViewPager.setCurrentItem(savedInstanceState.getInt(PAGER_POSITION, 0));
         }
 
         faveStarView.setOnClickListener(this);
@@ -191,12 +196,14 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     public void onSaveInstanceState(Bundle outState){
         super.onSaveInstanceState(outState);
         outState.putInt(MOVIE_ID_KEY, tmdbID);
+        outState.putInt(PAGER_POSITION, detailsViewPager.getCurrentItem());
     }
 
     // Handling screen rotation
     @Override
     public void onRestoreInstanceState(Bundle inState){
         tmdbID = inState.getInt(MOVIE_ID_KEY);
+        detailsViewPager.setCurrentItem(inState.getInt(PAGER_POSITION, 0));
     }
 
     // Providing up navigation.
@@ -261,7 +268,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
         if(!TextUtils.isEmpty(backdropUrlPath)){
             backdropUrlPath = ApiUrlBuilder.BACKDROP_POSTER_PATH_BASE_URL + backdropUrlPath;
-            Picasso.with(this).load(backdropUrlPath).placeholder(R.drawable.backdrop_placeholder).error(R.drawable.backdrop_placeholder).into(backdropView);
+            Picasso.with(this).load(backdropUrlPath).placeholder(R.drawable.backdrop_placeholder).error(R.drawable.loading_error).into(backdropView);
         }
 
         if (favouritesCheck()) {

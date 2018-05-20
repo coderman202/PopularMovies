@@ -2,7 +2,6 @@ package com.coderman202.popularmovies.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,7 +74,6 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewListAdapter.Vi
         if (reviewList == null) {
             return 0;
         }
-        Log.e(LOG_TAG, reviewList.toString());
         return reviewList.size();
     }
 

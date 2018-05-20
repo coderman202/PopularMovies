@@ -1,6 +1,5 @@
 package com.coderman202.popularmovies;
 
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,7 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -86,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
             FavouritesContract.FaveMovieEntry.POSTER_URL
     };
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,18 +95,13 @@ public class MainActivity extends AppCompatActivity {
 
         actionBar = this.getSupportActionBar();
 
+
         if(savedInstanceState != null){
             userPref = savedInstanceState.getString(USER_PREF_KEY);
-            Parcelable savedRecyclerLayoutState = savedInstanceState.getParcelable(BUNDLE_RECYCLER_LAYOUT_KEY);
-            movieListLayoutManager.onRestoreInstanceState(savedRecyclerLayoutState);
-            Log.e(LOG_TAG, userPref);
-        } else {
-            initRecyclerView();
-
-            loadMovieList();
-
-            //checkForResults();
         }
+        initRecyclerView();
+        loadMovieList();
+        //checkForResults();
         setActionBarTitle();
     }
 
@@ -121,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
     // Handling screen rotations.
     @Override
     public void onRestoreInstanceState(Bundle inState){
+
         userPref = inState.getString(USER_PREF_KEY);
         Parcelable savedRecyclerLayoutState = inState.getParcelable(BUNDLE_RECYCLER_LAYOUT_KEY);
         movieListLayoutManager.onRestoreInstanceState(savedRecyclerLayoutState);
@@ -194,10 +190,7 @@ public class MainActivity extends AppCompatActivity {
      * Method to initialise the recycler view and set both layout manager and adapter
      */
     private void initRecyclerView() {
-        setLayoutSpanCount();
-        movieListLayoutManager = new GridLayoutManager(this, layoutSpanCount);
-        movieListView.setLayoutManager(movieListLayoutManager);
-        movieListView.setHasFixedSize(true);
+        setMovieListLayout();
         movieListAdapter = new MovieListAdapter(this);
         movieListView.setAdapter(movieListAdapter);
     }
@@ -257,15 +250,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * A method to check the screen orientation and change the span count based on such.
+     * A method to set the layout of the GridLayout, calling the method to check the screen width.
      */
-    private void setLayoutSpanCount(){
-        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
-            layoutSpanCount = PORTRAIT_SPAN_COUNT;
-        }
-        else{
-            layoutSpanCount = LANDSCAPE_SPAN_COUNT;
-        }
+    private void setMovieListLayout() {
+        movieListLayoutManager = new GridLayoutManager(this, numberOfColumns());
+        movieListView.setLayoutManager(movieListLayoutManager);
+        movieListView.setHasFixedSize(true);
+    }
+
+    private int numberOfColumns() {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        // You can change this divider to adjust the size of the poster
+        int widthDivider = 150;
+        int width = displayMetrics.widthPixels;
+        int nColumns = width / widthDivider;
+        if (nColumns < 2) return 2; //to keep the grid aspect
+        return nColumns;
     }
 
     // Handling when there is no connection or no results, and display TextViews to tell the user.

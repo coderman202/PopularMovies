@@ -5,12 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/movie_overview"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/details_screen_item_padding"
-        android:paddingTop="@dimen/details_screen_item_padding"
-        android:textAppearance="@style/TextBodyStyle"
-        tools:text="@string/overview_placeholder"/>
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/movie_overview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/details_screen_item_padding"
+            android:paddingTop="@dimen/details_screen_item_padding"
+            android:textAppearance="@style/TextBodyStyle"
+            tools:text="@string/overview_placeholder"/>
+
+        <View
+            android:id="@+id/padded_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padded_view_height"
+            android:paddingTop="@dimen/padded_view_height"
+            android:layout_marginTop="@dimen/padded_view_height"
+            android:layout_marginBottom="@dimen/padded_view_height"/>
+    </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

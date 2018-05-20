@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle"
+    android:thickness="1dp"
+    android:visible="true">
+    <stroke
+        android:color="@color/colorAccent"
+        android:width="2dp"
+        android:dashGap="5dp"
+        android:dashWidth="25dp"/>
+    <size
+        android:width="@dimen/fave_star_size"
+        android:height="@dimen/fave_star_size"/>
+    <corners android:radius="24dp"/>
+</shape>
